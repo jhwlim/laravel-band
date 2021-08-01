@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <v-container>
         main
-    </div>
+    </v-container>
 </template>
 
 <script>
