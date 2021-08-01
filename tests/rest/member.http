@@ -1,0 +1,8 @@
+###
+POST http://localhost:8000/api/member
+Content-Type: application/json
+
+{
+    "user_id": "abc1234",
+    "password": "1234"
+}
