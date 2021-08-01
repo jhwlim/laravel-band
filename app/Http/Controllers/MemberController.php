@@ -4,20 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Member;
-use Illuminate\Support\Facades\Hash;
+use App\Services\MemberService;
 
 class MemberController extends Controller
 {
+    protected $memberService;
+
+    public function __construct(MemberService $memberService) {
+        $this->memberService = $memberService;
+    }
+
     public function store(Request $request) {
         // validation check
+        $data = $request->only([
+            'user_id',
+            'password'
+        ]);
 
         // insert
         try {
-            $member = Member::create([
-                'user_id' => $request->user_id,
-                'password' => Hash::make($request->password),
-            ]);
-            return $member;
+            return $this->memberService->registerMember($data);
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 400);
         }
