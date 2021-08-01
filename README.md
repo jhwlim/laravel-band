@@ -50,3 +50,20 @@ php artisan migrate:reset
 ```
 php artisan migrate:refresh
 ```
+
+### 2. Model
+- Model 생성하기
+```
+php artisan make:model 모델이름(단수형)
+```
+
+- Model, Controller, Migration 파일 한번에 생성하기
+```
+php artisan make:model 모델이름(단수형) -c -m
+```
+
+### 3. Controller
+- Controller 생성하기
+```
+php artisan make:controller 컨트롤러이름
+```
