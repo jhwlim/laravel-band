@@ -1,9 +1,16 @@
 <template>
     <v-container>
         <group-header></group-header>
-        <v-row>
-            <v-col cols="auto">
-                about {{ this.$route.params.id }}
+        <v-row class="px-3">
+            <v-col
+                cols="auto"
+                class="px-2">
+                <h3 class="mb-2">그룹 {{ this.$route.params.id }}</h3>
+                <v-btn
+                    color="primary"
+                >
+                    그룹 가입하기
+                </v-btn>
             </v-col>
             <v-col>
                 <v-sheet>
