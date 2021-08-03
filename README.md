@@ -24,7 +24,85 @@ npm install
 npm run dev
 ```
 
-## 참고 - 명령어
+## :memo: SPA 인증
+### Sanctum 이란
+- 토큰을 사용하지 않는 쿠키 기반의 Session Authentication
+- CSRF 보호, 세션 인증, XSS를 통한 인증 자격 증명(Authentication Credentials) 유출 방지
+- 자신의 SPA frontend에서 시작된 경우에만 쿠키를 사용하여 인증을 시도
+
+### Sanctum 설치
+```
+composer require laravel/sanctum
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+php migrate
+```
+
+### Sanctum 설정
+```php
+// /App/Http/Kernel.php
+protected $middlewareGroups = [
+    // ...
+    'api' => [
+                \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+                'throttle:api',
+                \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            ],
+];
+```
+
+<br>
+
+인증 정보가 유지되는 경로이므로, 8000 포트를 사용한다면 `localhost:8000`을 추가한다.
+```php
+// config/sanctum.php
+    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
+        '%s%s',
+        'localhost,localhost:3000,localhost:8000,127.0.0.1,127.0.0.1:8000,::1',
+        env('APP_URL') ? ','.parse_url(env('APP_URL'), PHP_URL_HOST) : ''
+    ))),
+```
+
+### 인증 모델 변경
+```php
+// /config/auth.php
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Member::class,
+        ],
+```
+
+```php
+// /App/Models/Member.php
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class Member extends Authenticatable {
+    // ...
+}
+```
+
+### 로그인 인증하기
+```php
+use Illuminate\Support\Facades\Auth;
+
+if (Auth::attempt($data)) {
+    // 인증 성공
+} else {
+    // 인증 실패
+}
+```
+
+### 인증된 (로그인한) 사용자 정보 가져오기
+```php
+$user = Auth:user();
+```
+
+### 로그아웃 처리하기
+```php
+Auth::guard('web')->logout();
+```
+
+## :memo: 참고 - 명령어
 ### 1. Database
 - migration 파일 생성하기
 ```
