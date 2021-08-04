@@ -28,4 +28,7 @@ class AuthController extends Controller
         return $this->success(null);
     }
 
+    public function getAuthMember() {
+        return $this->success(Auth::user());
+    }
 }

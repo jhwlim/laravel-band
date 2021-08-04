@@ -12,7 +12,12 @@ const logout = () => {
     return axios.post('/logout');
 }
 
+const getAuthMember = () => {
+    return axios.get('/auth/member');
+}
+
 export default {
     login,
-    logout
+    logout,
+    getAuthMember,
 }

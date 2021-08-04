@@ -15,6 +15,7 @@
                 ></v-text-field>
                 <v-text-field
                     v-model="loginForm.password"
+                    type="password"
                     label="비밀번호"
                     width="100%"
                 ></v-text-field>
@@ -23,7 +24,7 @@
                 <v-btn
                     color="primary"
                     width="100%"
-                    @click="login"
+                    @click="submitLoginForm"
                 >
                     로그인
                 </v-btn>
@@ -33,7 +34,7 @@
 </template>
 
 <script>
-import authApi from "../api/authApi";
+import { mapActions } from "vuex";
 
 export default {
     name: "LoginView",
@@ -46,10 +47,15 @@ export default {
         };
     },
     methods: {
-        login() {
-            authApi.login(this.loginForm)
+        ...mapActions('member', {
+            login: 'login',
+        }),
+        submitLoginForm() {
+            this.login(this.loginForm)
                 .then(response => {
-                    console.log(response);
+                    if (response.status === 200) {
+                        this.$router.push('/');
+                    }
                 })
                 .catch(error => {
                     console.log(error);

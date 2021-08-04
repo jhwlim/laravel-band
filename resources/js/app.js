@@ -10,5 +10,8 @@ const app = new Vue({
     router,
     store,
     vuetify,
+    created: async function() {
+        await store.dispatch('member/setInitState');
+    },
     render: h => h(App),
 });
