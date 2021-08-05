@@ -32,7 +32,7 @@
 <script>
 import GroupHeader from "../../components/group/GroupHeader";
 import GroupImage from "../../components/group/GroupImage";
-import groupApi from "../../api/groupApi";
+import { mapState, mapActions } from "vuex";
 
 export default {
     name: "GroupLayout",
@@ -40,38 +40,21 @@ export default {
         GroupHeader,
         GroupImage,
     },
-    data: function() {
-        return {
-            group: {
-                name: '',
-                intro: '',
-                image_path: '',
-                admin_id: '',
-            }
-        };
-    },
     computed: {
+        ...mapState({
+            group: state => state.group,
+        }),
         groupId() {
             return this.$route.params.id;
         }
     },
+    methods: {
+        ...mapActions('group', {
+            getGroupInfo: 'getGroupInfo'
+        }),
+    },
     created: function() {
-        groupApi.getGroupInfo(this.groupId)
-            .then(response => {
-                if (response.status === 200) {
-                    this.group = response.data;
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                if (error.response.status === 404) {
-                    this.$router.push('/');
-                }
-            });
+        this.getGroupInfo(this.groupId);
     },
 }
 </script>
-
-<style scoped>
-
-</style>
