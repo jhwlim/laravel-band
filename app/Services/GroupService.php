@@ -23,4 +23,9 @@ class GroupService
             throw new \Exception($e->getMessage());
         }
     }
+
+    public function findById($id) {
+        return $this->groupRepository->findById($id);
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\GroupService;
 use App\Traits\ApiResponser;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,6 +34,16 @@ class GroupController extends Controller
             $group = $this->groupService->createGroup($data);
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), 500);
+        }
+
+        return $this->success($group);
+    }
+
+    public function show($id) {
+        try {
+            $group = $this->groupService->findById($id);
+        } catch (ModelNotFoundException $e) {
+            return $this->error($e->getMessage(), 404);
         }
 
         return $this->success($group);

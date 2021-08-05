@@ -23,4 +23,8 @@ class GroupRepository
         return $group;
     }
 
+    public function findById($id) {
+        $group = Group::findOrFail($id);
+        return $group;
+    }
 }

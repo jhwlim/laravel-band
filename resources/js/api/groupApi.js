@@ -17,6 +17,11 @@ const createGroup = ({ name, intro, imageFile }) => {
     return axios.post(baseUrl, formData, config);
 };
 
+const getGroupInfo = id => {
+    return axios.get(`${baseUrl}/${id}`);
+}
+
 export default {
     createGroup,
+    getGroupInfo,
 }
