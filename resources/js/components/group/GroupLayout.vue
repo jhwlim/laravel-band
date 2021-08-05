@@ -22,7 +22,7 @@
             </v-col>
             <v-col>
                 <v-sheet>
-                    {{ group.intro }}
+                    <slot name="content"></slot>
                 </v-sheet>
             </v-col>
         </v-row>
@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import GroupHeader from "../components/GroupHeader";
-import GroupImage from "../components/GroupImage";
-import groupApi from "../api/groupApi";
+import GroupHeader from "../../components/group/GroupHeader";
+import GroupImage from "../../components/group/GroupImage";
+import groupApi from "../../api/groupApi";
 
 export default {
-    name: "GroupView",
+    name: "GroupLayout",
     components: {
         GroupHeader,
         GroupImage,
@@ -71,3 +71,7 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+
+</style>

@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import groupApi from "../api/groupApi";
+import groupApi from "../../api/groupApi";
 
 export default {
     name: "GroupCreateView",

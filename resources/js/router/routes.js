@@ -1,7 +1,8 @@
 import MainView from "../views/MainView";
 import LoginView from "../views/LoginView";
-import GroupView from "../views/GroupView";
-import GroupCreateView from "../views/GroupCreateView";
+import GroupView from "../views/group/GroupView";
+import GroupCreateView from "../views/group/GroupCreateView";
+import GroupEditView from "../views/group/GroupEditView";
 
 const routes = [
     {
@@ -20,6 +21,10 @@ const routes = [
         path: '/group/:id',
         component: GroupView,
     },
+    {
+        path: '/group/:id/edit',
+        component: GroupEditView,
+    }
 
 ];
 
