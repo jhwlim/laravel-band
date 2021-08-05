@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,8 @@ Route::middleware('auth:sanctum')->get('/auth/member', [AuthController::class, '
 
 Route::prefix('member')->group(function() {
     Route::post('/', [MemberController::class, 'store']);
+});
+
+Route::prefix('groups')->group(function() {
+    Route::post('/', [GroupController::class, 'store']);
 });
