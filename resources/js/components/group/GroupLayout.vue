@@ -1,6 +1,5 @@
 <template>
     <v-container>
-        <group-header></group-header>
         <v-row class="px-3">
             <v-col
                 cols="auto"
@@ -21,6 +20,7 @@
                 </v-btn>
             </v-col>
             <v-col>
+                <group-header></group-header>
                 <v-sheet>
                     <slot name="content"></slot>
                 </v-sheet>
