@@ -33,7 +33,7 @@
                     </v-btn>
 
                     <v-text-field
-                        :value="group.name"
+                        v-model="groupName"
                         label="그룹명"
                         width="100%"
                     ></v-text-field>
@@ -47,7 +47,7 @@
                    </v-btn>
 
                     <v-textarea
-                        :value="group.intro"
+                        v-model="groupIntro"
                         label="그룹 소개글"
                         auto-grow
                     ></v-textarea>
@@ -96,19 +96,32 @@ export default {
             return this.group && this.imageUrl === this.savedImageUrl;
         },
         nameBtnDisable() {
-            return false;
+            return !this.name || this.name === this.group.name;
         },
         introBtnDisable() {
-            return false;
+            return !this.intro || this.intro === this.group.intro;
         },
+        groupName: {
+            get() {
+                return this.group.name;
+            },
+            set(val) {
+                this.name = val;
+            }
+        },
+        groupIntro: {
+            get() {
+                return this.group.intro;
+            },
+            set(val) {
+                this.intro = val;
+            }
+        }
     },
     methods: {
         changeFileInput(file) {
             this.imageFile = file;
         },
     },
-    created() {
-
-    }
 }
 </script>
