@@ -16,6 +16,7 @@
                     v-if="!this.isJoined"
                     color="primary"
                     block
+                    @click="requestJoinGroup"
                 >
                     그룹 가입하기
                 </v-btn>
@@ -34,6 +35,7 @@
 import GroupHeader from "../../components/group/GroupHeader";
 import GroupImage from "../../components/group/GroupImage";
 import { mapState, mapGetters, mapActions } from "vuex";
+import groupApi from "../../api/groupApi";
 
 export default {
     name: "GroupLayout",
@@ -56,6 +58,15 @@ export default {
         ...mapActions('group', {
             getGroupInfo: 'getGroupInfo'
         }),
+        requestJoinGroup() {
+            groupApi.requestJoinGroup(this.groupId)
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
     },
     created: function() {
         this.getGroupInfo(this.groupId);

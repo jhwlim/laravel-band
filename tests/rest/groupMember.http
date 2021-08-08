@@ -1,0 +1,12 @@
+POST localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "user_id": "test01",
+    "password": "test01"
+}
+
+###
+POST localhost:8000/api/groups/1/members
+Accept: application/json
+Content-Type: application/json

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\GroupMemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,6 @@ Route::prefix('member')->group(function() {
 Route::prefix('groups')->group(function() {
     Route::get('/{id}', [GroupController::class, 'show']);
     Route::post('/', [GroupController::class, 'store']);
+
+    Route::post('/{id}/members', [GroupMemberController::class, 'store'])->where('id', '[0-9]+');
 });
