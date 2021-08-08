@@ -28,4 +28,8 @@ class GroupService
         return $this->groupRepository->findById($id);
     }
 
+    public function findByIdWithGroupMemberState($id, $memId) {
+        return $this->groupRepository->findByIdWithGroupMemberState($id, $memId);
+    }
+
 }

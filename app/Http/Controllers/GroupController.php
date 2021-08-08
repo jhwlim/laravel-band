@@ -40,8 +40,9 @@ class GroupController extends Controller
     }
 
     public function show($id) {
+        $memId = Auth::id();
         try {
-            $group = $this->groupService->findById($id);
+            $group = $this->groupService->findByIdWithGroupMemberState($id, $memId);
         } catch (ModelNotFoundException $e) {
             return $this->error($e->getMessage(), 404);
         }

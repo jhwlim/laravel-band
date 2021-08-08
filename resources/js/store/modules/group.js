@@ -6,7 +6,7 @@ const state = {
     intro: '',
     image_path: '',
     admin_id: 0,
-    state: 0,
+    state: null,
 }
 
 const getters = {
@@ -36,7 +36,7 @@ const mutations = {
         state.name = '';
         state.intro = '';
         state.image_path = '';
-        state.admin_id = 0;
+        state.admin_id = null;
     }
 }
 
