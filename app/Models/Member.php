@@ -16,4 +16,8 @@ class Member extends Authenticatable
 
     protected $hidden = ['password'];
 
+    public function groups() {
+        return $this->belongsToMany(Group::class, 'group_member', 'mem_id', 'group_id');
+    }
+
 }
