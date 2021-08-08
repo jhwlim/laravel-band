@@ -25,8 +25,13 @@ const requestJoinGroup = id => {
     return axios.post(`${baseUrl}/${id}/members`);
 }
 
+const getGroupMembers = id => {
+    return axios.get(`${baseUrl}/${id}/members`);
+}
+
 export default {
     createGroup,
     getGroupInfo,
     requestJoinGroup,
+    getGroupMembers,
 }

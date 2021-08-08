@@ -34,5 +34,6 @@ Route::prefix('groups')->group(function() {
     Route::get('/{id}', [GroupController::class, 'show']);
     Route::post('/', [GroupController::class, 'store']);
 
+    Route::get('/{id}/members', [GroupMemberController::class, 'index'])->where('id', '[0-9]+');
     Route::post('/{id}/members', [GroupMemberController::class, 'store'])->where('id', '[0-9]+');
 });

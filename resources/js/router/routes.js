@@ -3,6 +3,7 @@ import LoginView from "../views/LoginView";
 import GroupView from "../views/group/GroupView";
 import GroupCreateView from "../views/group/GroupCreateView";
 import GroupEditView from "../views/group/GroupEditView";
+import GroupMemberView from "../views/group/GroupMemberView";
 
 const routes = [
     {
@@ -24,8 +25,11 @@ const routes = [
     {
         path: '/group/:id/edit',
         component: GroupEditView,
+    },
+    {
+        path: '/group/:id/members',
+        component: GroupMemberView,
     }
-
 ];
 
 export default routes;
