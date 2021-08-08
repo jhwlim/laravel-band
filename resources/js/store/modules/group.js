@@ -5,12 +5,22 @@ const state = {
     name: '',
     intro: '',
     image_path: '',
-    admin_id: '',
+    admin_id: 0,
+    state: 0,
 }
 
 const getters = {
-
+    isAdmin(state, getters, rootState) {
+        return state.admin_id > 0 && state.admin_id === rootState.member.id;
+    },
+    isJoinRequested(state) {
+        return state.state === 1;
+    },
+    isJoined(state, getters) {
+        return getters.isAdmin || state.state === 2;
+    },
 }
+
 
 const mutations = {
     setGroupState(state, payload) {

@@ -13,6 +13,7 @@
 
                 <h3 class="my-3 text-center">{{ group.name }}</h3>
                 <v-btn
+                    v-if="!this.isJoined"
                     color="primary"
                     block
                 >
@@ -32,7 +33,7 @@
 <script>
 import GroupHeader from "../../components/group/GroupHeader";
 import GroupImage from "../../components/group/GroupImage";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
     name: "GroupLayout",
@@ -43,6 +44,9 @@ export default {
     computed: {
         ...mapState({
             group: state => state.group,
+        }),
+        ...mapGetters({
+            isJoined: 'group/isJoined'
         }),
         groupId() {
             return this.$route.params.id;
