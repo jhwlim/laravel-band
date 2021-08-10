@@ -1,10 +1,11 @@
 <template>
     <v-container>
-        <h2>전체 그룹</h2>
+        <h2 class="mb-2">전체 그룹</h2>
         <v-card>
             <v-list two-line>
                 <v-list-item
                     v-for="(group, index) in groups" :key="index"
+                    @click="moveToGroup(group.id)"
                 >
                     <v-list-item-avatar>
                         <group-image :src="group.image_path"></group-image>
@@ -39,6 +40,11 @@ export default {
         return {
             groups: [],
         };
+    },
+    methods: {
+        moveToGroup(id) {
+            this.$router.push(`/group/${id}`);
+        }
     },
     created: function() {
         groupApi.getAllGroups()
