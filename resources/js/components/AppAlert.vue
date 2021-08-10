@@ -13,21 +13,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
     name: "AppAlert",
-    data: function() {
-        return {
-            alerts: [
-                {
-                    type: "info",
-                    message: "Information",
-                },
-                {
-                    type: "error",
-                    message: "Error",
-                }
-            ],
-        }
+    computed: {
+        ...mapState({
+            alerts: state => state.alert.alerts
+        }),
     }
 }
 </script>
