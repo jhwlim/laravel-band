@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-row class="px-3">
+        <v-row class="px-3 mx-auto" style="max-width: 1024px;">
             <v-col
                 cols="auto"
                 class="px-2">
