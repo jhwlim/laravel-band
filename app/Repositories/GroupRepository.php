@@ -38,4 +38,9 @@ class GroupRepository
         return $group;
     }
 
+    public function findAll() {
+        $group = Group::all();
+        return $group;
+    }
+
 }

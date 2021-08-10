@@ -29,9 +29,14 @@ const getGroupMembers = id => {
     return axios.get(`${baseUrl}/${id}/members`);
 }
 
+const getAllGroups = () => {
+    return axios.get(`${baseUrl}`);
+}
+
 export default {
     createGroup,
     getGroupInfo,
     requestJoinGroup,
     getGroupMembers,
+    getAllGroups,
 }

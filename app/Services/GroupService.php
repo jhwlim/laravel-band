@@ -32,4 +32,8 @@ class GroupService
         return $this->groupRepository->findByIdWithGroupMemberState($id, $memId);
     }
 
+    public function findAll() {
+        return $this->groupRepository->findAll();
+    }
+
 }

@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <h2>내가 관리자인 그룹</h2>
+        <h2>전체 그룹</h2>
         <v-card>
             <v-list two-line>
                 <v-list-item
@@ -28,6 +28,7 @@
 
 <script>
 import GroupImage from '../components/group/GroupImage';
+import groupApi from "../api/groupApi";
 
 export default {
     name: "MainView",
@@ -36,13 +37,19 @@ export default {
     },
     data: function() {
         return {
-            groups: [
-                {
-                    name: '테스트 그룹 1',
-                    intro: '테스트 그룹 입니다.',
-                }
-            ],
+            groups: [],
         };
+    },
+    created: function() {
+        groupApi.getAllGroups()
+            .then(response => {
+                console.log(response);
+                const result = response.data;
+                this.groups = result;
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 }
 </script>

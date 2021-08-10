@@ -50,4 +50,9 @@ class GroupController extends Controller
         return $this->success($group);
     }
 
+    public function index() {
+        $group = $this->groupService->findAll();
+        return $this->success($group);
+    }
+
 }

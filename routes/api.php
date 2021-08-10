@@ -31,6 +31,7 @@ Route::prefix('member')->group(function() {
 });
 
 Route::prefix('groups')->group(function() {
+    Route::get('/', [GroupController::class, 'index']);
     Route::get('/{id}', [GroupController::class, 'show']);
     Route::post('/', [GroupController::class, 'store']);
 
