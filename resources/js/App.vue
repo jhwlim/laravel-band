@@ -12,7 +12,6 @@
 <script>
 import AppHeader from "./components/AppHeader";
 import AppAlert from "./components/AppAlert";
-import { mapActions } from "vuex";
 
 export default {
     name: "App",
@@ -21,15 +20,12 @@ export default {
         AppAlert,
     },
     methods: {
-        ...mapActions({
-            alert: 'alert',
-        }),
         generateAlert() {
-            this.alert({ message: 'error' })
+            this.$alert("error message");
         }
     },
     created: function() {
-        this.alert({ type: 'info', message: 'information' });
+        this.$alert("information", "info");
     }
 }
 </script>

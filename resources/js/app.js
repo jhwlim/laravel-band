@@ -3,6 +3,7 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import axios from "./plugins/axios";
+import alert from "./plugins/alert";
 import App from "./App.vue";
 
 const app = new Vue({
