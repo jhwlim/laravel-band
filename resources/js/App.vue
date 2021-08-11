@@ -4,7 +4,6 @@
         <app-header></app-header>
         <v-main class="grey lighten-2">
             <router-view></router-view>
-            <v-btn @click="generateAlert">에러 추가</v-btn>
         </v-main>
     </v-app>
 </template>
@@ -19,13 +18,5 @@ export default {
         AppHeader,
         AppAlert,
     },
-    methods: {
-        generateAlert() {
-            this.$alert("error message");
-        }
-    },
-    created: function() {
-        this.$alert("information", "info");
-    }
 }
 </script>
