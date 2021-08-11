@@ -19,7 +19,7 @@ class CreateGroupsTable extends Migration
             $table->longText('intro');
             $table->string('image_path', 255);
             $table->unsignedBigInteger('admin_id');
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamps();
 
             $table->foreign('admin_id')->references('id')->on('members');
         });
