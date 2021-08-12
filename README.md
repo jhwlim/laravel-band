@@ -145,3 +145,51 @@ php artisan make:model 모델이름(단수형) -c -m
 ```
 php artisan make:controller 컨트롤러이름
 ```
+
+## Windows 환경에서 배포하기
+### nginx 설치
+
+### nginx 설정
+```
+// conf/nginx.conf
+http {
+    ...
+    server {
+        listen      80;
+        listen      localhost;
+        server_name  localhost;
+        root project-name/public;
+        # root d:/git_repos/band/public;
+        
+        location / {
+            index  index.html index.htm index.php;
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location ~ \.php$ {
+            try_files $uri /index.php = 404;
+            fastcgi_pass  127.0.0.1:7000;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+        }
+    }
+}
+```
+
+### 서버 실행
+- fast-cgi 실행 : php가 설치된 폴더에서 명령 프롬프트(cmd)
+```
+php-cgi -b localhost:7000
+```
+
+- nginx 실행 : `nginx.exe` 파일 실행
+
+### 서버 중지
+- nginx 중지 : nginx가 설치된 폴더에서 명령 프롬프트(cmd)
+```
+nginx.exe -s stop
+```
+
+### References
+- <http://i5on9i.blogspot.com/2020/11/nginx-laravel.html>
